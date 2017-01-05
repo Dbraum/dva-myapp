@@ -5,7 +5,11 @@
   ],
   "plugins": [
     "add-module-exports",
-    "transform-runtime",
-    "dva-hmr"
-  ]
+    "transform-runtime"
+  ],
+  "env":{
+    "development":{
+      "plugins":["dva-hmr"]
+    }
+  }
 }

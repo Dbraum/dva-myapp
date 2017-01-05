@@ -23,31 +23,27 @@ export default {
 
   module: {
     loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-    }, {
-      test: /\.(jpg|png|gif|webp)$/,
-      loader: 'url?limit=8000'
-    }, {
-      test: /\.html$/,
-      loader: 'html?minimize=false'
-    }, {
-      test: /\.css$/,
-      exclude: /node_modules/,
-      loader: ExtractTextPlugin.extract(
-        'css-loader?sourceMap&modules&localIdentName=[local]___[hash:base64:5]'
-      ),
-    }]
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      }, {
+        test: /\.(jpg|png|gif|webp)$/,
+        loader: 'url?limit=8000'
+      }, {
+        test: /\.html$/,
+        loader: 'html?minimize=false'
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader']
+      },
+
+    ]
   },
 
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin('[name].css', {
-      disable: false,
-      allChunks: true,
-    }),
   ],
 };
