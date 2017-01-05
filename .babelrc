@@ -7,11 +7,18 @@
   "plugins": [
     "add-module-exports",
     "transform-runtime",
-    ["import", { "libraryName": "antd", "style": true }] //https://www.npmjs.com/package/antd
+    [
+      "import",
+      {
+        "libraryName": "antd"
+      }
+    ] //https://www.npmjs.com/package/antd
   ],
-  "env":{
-    "development":{
-      "plugins":["dva-hmr"]
+  "env": {
+    "development": {
+      "plugins": [
+        "dva-hmr"
+      ]
     }
   }
 }

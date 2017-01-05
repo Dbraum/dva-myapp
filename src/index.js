@@ -1,17 +1,17 @@
-import dva from 'dva';
-import './index.css';
-
+import './index.html'
+import dva from 'dva'
+import { browserHistory } from 'dva/router';
 // 1. Initialize
-const app = dva();
+const app = dva()
 
-// 2. Plugins
-// app.use({});
+// 2. Model
 
-// 3. Model
-app.model(require('./models/count'));
+app.model(require('./models/app'))
+app.model(require('./models/dashboard'))
+app.model(require('./models/users'))
 
-// 4. Router
-app.router(require('./router'));
+// 3. Router
+app.router(require('./router'))
 
-// 5. Start
-app.start('#root');
+// 4. Start
+app.start('#root')
