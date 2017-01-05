@@ -1,5 +1,8 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack';
+
+
 import {
   join
 } from 'path';
@@ -37,7 +40,6 @@ export default {
         test: /\.css$/,
         loaders: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader']
       },
-
     ]
   },
 
@@ -45,5 +47,9 @@ export default {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      filename: '../views/dev/index.html',
+      template: './views/tpl/index.tpl.html'
+    }),
   ],
 };
