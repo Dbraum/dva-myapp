@@ -5,6 +5,7 @@
 
 # production
 /dist
+/views
 
 # misc
 .DS_Store
