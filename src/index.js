@@ -1,7 +1,11 @@
 import dva from 'dva'
-import { browserHistory } from 'dva/router';
+import {useRouterHistory} from 'dva/router';
+import {createHashHistory} from 'history';
 // 1. Initialize
-const app = dva()
+// https://github.com/dvajs/dva-knowledgemap#去除-hashhistory-下的-_k-查询参数
+const app = dva({
+  history: useRouterHistory(createHashHistory)({queryKey: false})
+})
 
 // 2. Model
 
