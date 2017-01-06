@@ -1,6 +1,6 @@
 import config from './config'
 import menu from './menu'
-import request from './request'
+import fetch from './fetch'
 import classnames from 'classnames'
 import mockStorge from './mockStorge'
 import {color} from './theme'
@@ -44,7 +44,7 @@ Date.prototype.format = function (format) {
 module.exports = {
   config,
   menu,
-  request,
+  fetch,
   color,
   classnames
 }
