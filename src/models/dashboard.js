@@ -1,9 +1,9 @@
-import {myCity, queryWeather, query} from '../services/dashboard'
-import {parse} from 'qs'
+import { myCity, queryWeather, query } from '../services/dashboard'
+import { parse } from 'qs'
 
 // zuimei 摘自 http://www.zuimeitianqi.com/res/js/index.js
 let zuimei = {
-  ParseActualData: function (actual, air) {
+  ParseActualData: function(actual, air) {
     let weather = {
       icon: 'http://www.zuimeitianqi.com/res/icon/' + zuimei.GetIconName(actual.wea, 'big'),
       name: zuimei.GetWeatherName(actual.wea),
@@ -13,7 +13,7 @@ let zuimei = {
     return weather
   },
 
-  GetIconName: function (wea, flg) {
+  GetIconName: function(wea, flg) {
     let myDate = new Date()
     let hour = myDate.getHours()
     let num = 0
@@ -45,7 +45,7 @@ let zuimei = {
     return num
   },
 
-  ReplaceIcon: function (num) {
+  ReplaceIcon: function(num) {
     if (num === 21) {
       num = 7
     } else if (num === 22) {
@@ -67,7 +67,7 @@ let zuimei = {
     return num
   },
 
-  GetWeatherName: function (wea) {
+  GetWeatherName: function(wea) {
     let name = ''
     if (wea.indexOf('/') !== -1) {
       let weas = wea.split('/')
@@ -79,7 +79,7 @@ let zuimei = {
     return name
   },
 
-  GetWeatherByCode: function (num) {
+  GetWeatherByCode: function(num) {
     let wea = ''
     if (num === 0) {
       wea = '晴'
@@ -175,7 +175,8 @@ export default {
     },
     sales: [],
     quote: {
-      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236'
+      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw2' +
+        '36'
     },
     numbers: [],
     recentSales: [],
@@ -184,45 +185,64 @@ export default {
     browser: [],
     cpu: {},
     user: {
-      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236'
+      avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw2' +
+        '36'
     }
   },
   subscriptions: {
-    setup ({dispatch}) {
-      dispatch({type: 'queryWeather'})
-      dispatch({type: 'query'})
+    setup({dispatch, history}) {
+      history.listen(({pathname}) => {
+        console.info(pathname)
+        if (pathname === '/dashboard') {
+          dispatch({
+            type: 'queryWeather'
+          })
+          dispatch({
+            type: 'query'
+          })
+        }
+      });
+
     }
   },
   effects: {
-    *query ({
-      payload
-    }, {call, put}) {
+    *query({payload}, {call, put}) {
       const data = yield call(query, parse(payload))
-      yield put({type: 'queryWeather', payload: {...data}})
+      yield put({
+        type: 'queryWeather',
+        payload: {
+          ...data
+        }
+      })
     },
-    *queryWeather ({
-      payload
-    }, {call, put}) {
-      const myCityResult = yield call(myCity, {flg: 0})
+    *queryWeather({payload}, {call, put}) {
+      const myCityResult = yield call(myCity, {
+        flg: 0
+      })
       const myCityData = myCityResult.query.results.json
-      const result = yield call(queryWeather, {cityCode: myCityData.selectCityCode})
+      const result = yield call(queryWeather, {
+        cityCode: myCityData.selectCityCode
+      })
       const data = result.query.results.json
       const weather = zuimei.ParseActualData(data.data.actual)
       weather.city = myCityData.selectCityName
 
-      yield put({type: 'queryWeatherSuccess', payload: {
-        weather
-      }})
+      yield put({
+        type: 'queryWeatherSuccess',
+        payload: {
+          weather
+        }
+      })
     }
   },
   reducers: {
-    queryWeatherSuccess (state, action) {
+    queryWeatherSuccess(state, action) {
       return {
         ...state,
         ...action.payload
       }
     },
-    queryWeather (state, action) {
+    queryWeather(state, action) {
       return {
         ...state,
         ...action.payload
