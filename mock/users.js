@@ -1,8 +1,9 @@
 const qs = require('qs')
 const Mock = require('mockjs')
-import mockStorge from '../src/utils/mockStorge'
+//import mockStorge from '../src/utils/mockStorge'
 
-let dataKey = mockStorge('UsersList', Mock.mock({
+
+export default {
   'data|100': [
     {
       'id|+1': 1,
@@ -23,11 +24,11 @@ let dataKey = mockStorge('UsersList', Mock.mock({
     total: 100,
     current: 1
   }
-}))
+}
 
-let usersListData = global[dataKey]
 
-module.exports = {
+
+var tess = {
 
   'GET /api/users' (req, res) {
     const page = qs.parse(req.query)
