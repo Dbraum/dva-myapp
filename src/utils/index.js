@@ -2,9 +2,7 @@ import config from './config'
 import menu from './menu'
 import fetch from './fetch'
 import classnames from 'classnames'
-import mockStorge from './mockStorge'
 import {color} from './theme'
-require('./mock.js')
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
