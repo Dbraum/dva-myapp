@@ -1,5 +1,4 @@
 import { login, userInfo, logout } from '../services/app'
-import { parse } from 'qs'
 
 export default {
   namespace: 'app',
@@ -70,7 +69,7 @@ export default {
       }
     },
     * logout({payload}, {call, put}) {
-      const data = yield call(logout, parse(payload))
+      const data = yield call(logout, payload)
       if (data.success) {
         yield put({
           type: 'logoutSuccess'
