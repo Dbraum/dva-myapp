@@ -30,14 +30,6 @@ export default function ({history, app}) {
             })
           }
         }, {
-          path: 'ui/ico',
-          name: 'ui/ico',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              cb(null, require('./routes/ui/ico'))
-            })
-          }
-        }, {
           path: '*',
           name: 'error',
           getComponent (nextState, cb) {

@@ -57,15 +57,15 @@ app.get('/api/dashboard', function(req, res) {
 app.use('/api/users', require('./routes/users'));
 
 // Proxy api requests
-// app.use("/api/*", function (req, res) {
-//   req.url = req.baseUrl; // Janky hack...
-//   apiProxy.web(req, res, {
-//     target: {
-//       port: 9090,
-//       host: "localhost"
-//     }
-//   });
-// });
+app.use("/zuimei/*", function (req, res) {
+  req.url = req.baseUrl; // Janky hack...
+  apiProxy.web(req, res, {
+    target: {
+      port: 9090,
+      host: "localhost"
+    }
+  });
+});
 
 //app.use(require('./ssrMiddleware'));
 app.disable('x-powered-by');

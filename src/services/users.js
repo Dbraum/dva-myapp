@@ -2,8 +2,7 @@ import { fetch } from '../utils'
 
 export async function query (params) {
   return fetch('/api/users', {
-    method: 'get',
-    body: params
+    method: 'get'
   })
 }
 

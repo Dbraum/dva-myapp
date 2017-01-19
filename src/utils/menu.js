@@ -10,20 +10,8 @@ module.exports = [
     icon: 'user'
   },
   {
-    key: 'ui',
-    name: 'UI组件',
-    icon: 'camera-o',
-    clickable: false,
-    child: [
-      {
-        key: 'ico',
-        name: '业务图标'
-      }
-    ]
-  },
-  {
-    key: 'navigation',
-    name: '测试导航',
+    key: 'datatable',
+    name: 'datatable例子',
     icon: 'setting',
     child: [
       {
