@@ -1,4 +1,6 @@
-@import "../layout/vars.less";
+
+
+
 .numberCard{
   padding: 32px;
   font-family: monospace;
@@ -16,13 +18,17 @@
       font-size: 16px;
       margin-bottom: 8px;
       height: 16px;
-      .text-overflow();
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .number{
       line-height: 32px;
       font-size: 24px;
       height: 32px;
-      .text-overflow();
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
