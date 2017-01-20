@@ -10,7 +10,7 @@ import { Spin } from 'antd'
 import { classnames } from '../utils'
 import '../components/layout/common.less'
 
-function App ({children, location, dispatch, app}) {
+function App ({children, location, dispatch, app = {}}) {
   const {login, loading, loginButtonLoading, user, siderFold, darkTheme, isNavbar} = app
   const loginProps = {
     loading,
