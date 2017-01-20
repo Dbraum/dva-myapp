@@ -9,20 +9,15 @@ export default {
       name: '吴彦祖'
     },
     loginButtonLoading: false,
-    siderFold: localStorage.getItem('antdAdminSiderFold') === 'true',
-    darkTheme: localStorage.getItem('antdAdminDarkTheme') !== 'false',
-    isNavbar: document.body.clientWidth < 769
+    siderFold: false,
+    darkTheme: true,
+    isNavbar: false
   },
   subscriptions: {
     setup({dispatch, history}) {
       dispatch({
         type: 'queryUser'
       })
-      window.onresize = function() {
-        dispatch({
-          type: 'changeNavbar'
-        })
-      }
     }
 
   },

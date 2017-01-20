@@ -2,6 +2,12 @@ import React from 'react'
 import {Router} from 'dva/router'
 import App from './routes/app'
 
+// Hook for server
+if (typeof require.ensure !== 'function') {
+  require.ensure = function(dependencies, callback) {
+    callback(require)
+  }
+}
 
 export const routes = [
   {
@@ -50,3 +56,4 @@ export default function ({history, app}) {
 //为什么要这一句
 //https://github.com/59naga/babel-plugin-add-module-exports/issues/27
 module.exports = exports['default'];
+module.exports.routes = exports['routes'];

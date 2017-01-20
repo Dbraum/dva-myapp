@@ -6,8 +6,11 @@ require('css-modules-require-hook')({
   processorOpts: {
     parser: lessParser
   },
-  generateScopedName: '[local]___[hash:base64:5]',
+  generateScopedName: '[name]__[local]___[hash:base64:5]',
 });
+
+
+
 
 // Image require hook
 require('asset-require-hook')({

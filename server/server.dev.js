@@ -57,22 +57,27 @@ app.get('/api/dashboard', function(req, res) {
 app.use('/api/users', require('./routes/users'));
 
 // Proxy api requests
-app.use("/zuimei/*", function (req, res) {
-  req.url = req.baseUrl; // Janky hack...
-  apiProxy.web(req, res, {
-    target: {
-      port: 9090,
-      host: "localhost"
-    }
-  });
-});
+// app.use("/zuimei/*", function (req, res) {
+//   req.url = req.baseUrl; // Janky hack...
+//   apiProxy.web(req, res, {
+//     target: {
+//       port: 9090,
+//       host: "localhost"
+//     }
+//   });
+// });
+// view engine setup
+app.set('views', path.resolve(__dirname, '../views/dev'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 
-//app.use(require('./ssrMiddleware'));
+
+app.use(require('./ssrMiddleware'));
 app.disable('x-powered-by');
 
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '../views/dev', 'index.html'))
-})
+// app.get('*', function(request, response) {
+//   response.sendFile(path.resolve(__dirname, '../views/dev', 'index.html'))
+// })
 
 const server = app.listen(8989, () => {
   const {port} = server.address();
