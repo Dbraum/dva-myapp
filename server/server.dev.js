@@ -66,6 +66,8 @@ app.use('/api/users', require('./routes/users'));
 //     }
 //   });
 // });
+
+
 // view engine setup
 app.set('views', path.resolve(__dirname, '../views/dev'));
 app.set('view engine', 'ejs');
