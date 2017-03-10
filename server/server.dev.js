@@ -56,12 +56,19 @@ app.get('/api/dashboard', function(req, res) {
 
 app.use('/api/users', require('./routes/users'));
 
-// Proxy api requests
-// app.use("/zuimei/*", function (req, res) {
-//   req.url = req.baseUrl; // Janky hack...
+
+app.use('/api/login', function(req, res) {
+  const template = require('../mock/dashboard');
+  console.info(req.body)
+  res.json(req.body);
+})
+
+//Proxy api requests
+// app.use("/api/*", function (req, res) {
+//   req.url = req.baseUrl;
 //   apiProxy.web(req, res, {
 //     target: {
-//       port: 9090,
+//       port: 1337,
 //       host: "localhost"
 //     }
 //   });

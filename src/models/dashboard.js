@@ -23,16 +23,16 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       history.listen(({pathname}) => {
-        dispatch({
+       /* dispatch({
           type: 'query'
-        })
+        })*/
       });
 
     }
   },
   effects: {
     *query({payload}, {call, put}) {
-      const data = yield call(query, parse(payload))
+      const data = yield call(query, payload)
       yield put({
         type: 'queryDataSuccess',
         payload: {

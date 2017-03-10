@@ -15,9 +15,9 @@ export default {
   },
   subscriptions: {
     setup({dispatch, history}) {
-      dispatch({
-        type: 'queryUser'
-      })
+      // dispatch({
+      //   type: 'queryUser'
+      // })
     }
 
   },
@@ -26,7 +26,6 @@ export default {
       yield put({
         type: 'showLoginButtonLoading'
       })
-      console.info(payload)
       const data = yield call(login, payload)
       if (data.success) {
         yield put({
@@ -134,14 +133,14 @@ export default {
       }
     },
     handleSwitchSider(state) {
-      localStorage.setItem('antdAdminSiderFold', !state.darkTheme)
+      //localStorage.setItem('antdAdminSiderFold', !state.darkTheme)
       return {
         ...state,
         siderFold: !state.siderFold
       }
     },
     handleChangeTheme(state) {
-      localStorage.setItem('antdAdminDarkTheme', !state.darkTheme)
+      //localStorage.setItem('antdAdminDarkTheme', !state.darkTheme)
       return {
         ...state,
         darkTheme: !state.darkTheme

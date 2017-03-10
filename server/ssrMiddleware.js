@@ -6,7 +6,6 @@ import dva from 'dva';
 
 
 export default function (req, res) {
-	console.info(routes)
 	match({
 		routes,
 		location: req.url

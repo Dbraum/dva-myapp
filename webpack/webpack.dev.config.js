@@ -14,7 +14,9 @@ export default {
 	entry: {
 		index: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/index.js']
 	},
-
+	node: {
+		fs: "empty"
+	},
 	output: {
 		filename: '[name].js',
 		path: join(__dirname, './dist'),
