@@ -12,7 +12,6 @@ export async function login(params) {
     localStorage.setItem('user_name', username)
     response.message = '登录成功'
     response.success = true
-    localStorage
   } else {
     response.message = "账号或者密码不正确"
   }
