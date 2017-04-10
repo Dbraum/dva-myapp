@@ -27,12 +27,13 @@ export default {
         type: 'showLoginButtonLoading'
       })
       const data = yield call(login, payload)
-      if (data.success) {
+      console.info(data)
+      if (data.logined) {
         yield put({
           type: 'loginSuccess',
           payload: {
             user: {
-              name: payload.username
+              name: data.username
             }
           }
         })

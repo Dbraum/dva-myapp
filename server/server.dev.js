@@ -1,12 +1,11 @@
 import express from 'express';
 import webpack from 'webpack';
-import httpProxy from "http-proxy";
 import config from '../webpack/webpack.dev.config';
 import path from 'path'
-import bodyParser from 'body-parser'
 import fs from 'fs'
 const app = express();
-const apiProxy = httpProxy.createProxyServer();
+var proxy = require('http-proxy-middleware');
+
 
 // webpack compile
 const compiler = webpack(config);
@@ -43,51 +42,19 @@ compiler.plugin('emit', (compilation, callback) => {
 
 app.use(require('webpack-dev-middleware')(compiler, options));
 app.use(require('webpack-hot-middleware')(compiler));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-//mock
-var Mock = require('mockjs')
-app.get('/api/dashboard', function(req, res) {
-  const template = require('../mock/dashboard');
-  res.json(Mock.mock(template));
-})
-
-app.use('/api/users', require('./routes/users'));
-
-
-app.use('/api/login', function(req, res) {
-  const template = require('../mock/dashboard');
-  console.info(req.body)
-  res.json(req.body);
-})
-
-//Proxy api requests
-// app.use("/api/*", function (req, res) {
-//   req.url = req.baseUrl;
-//   apiProxy.web(req, res, {
-//     target: {
-//       port: 1337,
-//       host: "localhost"
-//     }
-//   });
-// });
-
 
 // view engine setup
 app.set('views', path.resolve(__dirname, '../views/dev'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
-
+app.use('/api', proxy({target: 'http://localhost:7001', changeOrigin: true}));
 app.use(require('./ssrMiddleware'));
-app.disable('x-powered-by');
 
 // app.get('*', function(request, response) {
 //   response.sendFile(path.resolve(__dirname, '../views/dev', 'index.html'))
 // })
-
+//Proxy api requests
 const server = app.listen(8989, () => {
   const {port} = server.address();
   console.info(`Listened at http://localhost:${port}`);

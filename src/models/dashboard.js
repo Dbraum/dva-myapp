@@ -23,9 +23,9 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       history.listen(({pathname}) => {
-       /* dispatch({
+        dispatch({
           type: 'query'
-        })*/
+        })
       });
 
     }

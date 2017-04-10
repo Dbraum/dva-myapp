@@ -35,8 +35,6 @@ export default {
 
   effects: {
     *query ({ payload }, { call, put }) {
-      console.info(payload)
-      console.info(payload)
       yield put({ type: 'showLoading' })
       const data = yield call(query, parse(payload))
       if (data) {

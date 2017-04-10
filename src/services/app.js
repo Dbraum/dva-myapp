@@ -1,7 +1,6 @@
 import {fetch} from '../utils'
 
 export async function login(params) {
-	console.info(params)
 	return fetch('/api/login', {   method: 'post',   body: params })
 }
 
