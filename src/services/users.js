@@ -1,8 +1,11 @@
 import { fetch } from '../utils'
+import qs from 'qs'
+import _ from 'lodash'
 
 export async function query (params) {
-  return fetch('/api/users', {
-    method: 'get'
+  const url = _.isEmpty(params)?'/api/users':`/api/users?${qs.stringify(params)}`
+  return fetch(url, {
+    method: 'get',
   })
 }
 
