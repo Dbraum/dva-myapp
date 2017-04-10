@@ -65,7 +65,7 @@ export default {
 		},
 		* logout({payload}, {call, put}) {
 			const data = yield call(logout, payload)
-			if (data.success) {
+			if (data.logout) {
 				yield put({
 					type: 'logoutSuccess'
 				})
