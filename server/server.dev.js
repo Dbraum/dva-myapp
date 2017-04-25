@@ -57,5 +57,5 @@ app.use(require('./ssrMiddleware'));
 //Proxy api requests
 const server = app.listen(8989, () => {
   const {port} = server.address();
-  console.info(`Listened at http://localhost:${port}`);
+  console.info(`====================Listened at http://localhost:${port}`);
 });

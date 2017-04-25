@@ -15,7 +15,7 @@ export const routes = [
     component: App,
     getIndexRoute (nextState, cb) {
       require.ensure([], require => {
-        cb(null, {component: require('./routes/users')})
+        cb(null, {component: require('./routes/dashboard')})
       })
     },
     childRoutes: [

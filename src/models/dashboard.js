@@ -1,4 +1,4 @@
-import { myCity, queryWeather, query } from '../services/dashboard'
+import { query } from '../services/dashboard'
 
 
 export default {
@@ -23,11 +23,12 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       history.listen(({pathname}) => {
-        dispatch({
-          type: 'query'
-        })
+        if (pathname === '/dashboard' || pathname === "/") {
+          dispatch({
+            type: 'query'
+          })
+        }
       });
-
     }
   },
   effects: {
