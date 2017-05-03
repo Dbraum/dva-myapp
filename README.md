@@ -4,6 +4,8 @@ dva一个练习项目，主要为了了解怎么进行热加载，以及能不�
 ## Usage
 
 ```
+git clone https://github.com/kunzhijia/dva-myapp.git
+cd dva-myapp
 npm i
 npm run dev
 ```
