@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router} from 'dva/router'
+import { Router } from 'dva/router'
 import App from './routes/app'
 
 // Hook for server
@@ -13,16 +13,18 @@ export const routes = [
   {
     path: '/',
     component: App,
-    getIndexRoute (nextState, cb) {
+    getIndexRoute(nextState, cb) {
       require.ensure([], require => {
-        cb(null, {component: require('./routes/dashboard')})
+        cb(null, {
+          component: require('./routes/dashboard')
+        })
       })
     },
     childRoutes: [
       {
         path: 'dashboard',
         name: 'dashboard',
-        getComponent (nextState, cb) {
+        getComponent(nextState, cb) {
           require.ensure([], require => {
             cb(null, require('./routes/dashboard'))
           })
@@ -30,15 +32,31 @@ export const routes = [
       }, {
         path: 'users',
         name: 'users',
-        getComponent (nextState, cb) {
+        getComponent(nextState, cb) {
           require.ensure([], require => {
             cb(null, require('./routes/users'))
           })
         }
       }, {
+        path: 'threejs/simple',
+        name: 'Simple',
+        getComponent(nextState, cb) {
+          require.ensure([], require => {
+            cb(null, require('./routes/three/simple'))
+          })
+        }
+      }, {
+        path: 'threejs/cloth',
+        name: 'Cloth',
+        getComponent(nextState, cb) {
+          require.ensure([], require => {
+            cb(null, require('./routes/three/AnimationCloth/index'))
+          })
+        }
+      }, {
         path: '*',
         name: 'error',
-        getComponent (nextState, cb) {
+        getComponent(nextState, cb) {
           require.ensure([], require => {
             cb(null, require('./routes/error'))
           })
@@ -50,8 +68,9 @@ export const routes = [
 
 export default function ({history, app}) {
 
-  return <Router history={history} routes={routes} />
-};
+  return <Router history={ history } routes={ routes } />
+}
+;
 
 //为什么要这一句
 //https://github.com/59naga/babel-plugin-add-module-exports/issues/27

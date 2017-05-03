@@ -10,27 +10,17 @@ module.exports = [
     icon: 'user'
   },
   {
-    key: 'datatable',
-    name: 'datatable例子',
+    key: 'threejs',
+    name: 'threejsDemo',
     icon: 'setting',
     child: [
       {
-        key: 'navigation1',
-        name: '二级导航1'
+        key: 'simple',
+        name: 'Simple'
       },
       {
-        key: 'navigation2',
-        name: '二级导航2',
-        child: [
-          {
-            key: 'navigation21',
-            name: '三级导航1'
-          },
-          {
-            key: 'navigation22',
-            name: '三级导航2'
-          }
-        ]
+        key: 'cloth',
+        name: 'cloth'
       }
     ]
   }
